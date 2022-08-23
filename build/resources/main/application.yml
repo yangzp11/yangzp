@@ -1,0 +1,12 @@
+
+spring:
+  application:
+    name: yangzp
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/yzp?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convert_to_null&serverTimezone=Asia/Shanghai
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    # password: 123456
+    password: root
+    username: root
+server:
+  port: 9988

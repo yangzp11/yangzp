@@ -1,0 +1,41 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.2'
+    id 'io.spring.dependency-management' version '1.0.12.RELEASE'
+    id 'groovy'
+}
+
+group = 'com.yzp'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+    compileOnly {
+        extendsFrom annotationProcessor
+    }
+}
+
+repositories {
+    mavenLocal()
+    // 配置镜像代理
+    maven {
+        allowInsecureProtocol = true // 允许http访问
+        url 'https://maven.aliyun.com/nexus/content/groups/public/'
+    }
+    mavenCentral()
+}
+
+dependencies {
+    //implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+    //implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'mysql:mysql-connector-java'
+    compileOnly 'org.projectlombok:lombok'
+    //developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation "cn.hutool:hutool-all:5.6.4"
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}

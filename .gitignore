@@ -36,5 +36,7 @@ hs_err_pid*
 rebel.xml
 
 ### gradle ###
-.gradle\
+gradle/
 *.build
+build/
+.gradle/

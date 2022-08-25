@@ -33,7 +33,7 @@ dependencies {
     //developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    implementation "cn.hutool:hutool-all:5.6.4"
+    implementation "cn.hutool:hutool-all:5.8.5"
 }
 
 tasks.named('test') {

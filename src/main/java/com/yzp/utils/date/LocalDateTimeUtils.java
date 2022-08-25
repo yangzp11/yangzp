@@ -191,7 +191,7 @@ public class LocalDateTimeUtils {
      * 构造一个时间段
      *
      * @param startTime startTime
-     * @param endTime endTime
+     * @param endTime   endTime
      * @return TimeSlot
      */
     public static TimeSlot buildSlot(LocalDateTime startTime, LocalDateTime endTime) {
@@ -347,6 +347,59 @@ public class LocalDateTimeUtils {
         dataList.add(firstDayOfYear);
         dataList.add(lastDayOfYear);
         return dataList;
+    }
+
+    /**
+     * 周一 ===》周日集合排序
+     *
+     * @param arr list
+     * @return sort
+     */
+    public List<String> handleWeekSort(List<String> arr) {
+        //冒泡排序
+        for (int i = 0; i < arr.size() - 1; i++) {
+            boolean flag = true;
+            for (int j = 0; j < arr.size() - i - 1; j++) {
+                //巧妙的值转换
+                if (returnWeek(arr.get(j)) > returnWeek(arr.get(j + 1))) {
+                    String temp = arr.get(j);
+                    arr.set(j, arr.get(j + 1));
+                    arr.set(j + 1, temp);
+                    // 改变flag，提前结束
+                    flag = false;
+                }
+            }
+            if (flag) {
+                break;
+            }
+        }
+        return arr;
+    }
+
+    /**
+     * 返回周几对应数字
+     *
+     * @param var 值
+     * @return int
+     */
+    public int returnWeek(String var) {
+        switch (var) {
+            case "周一":
+                return 1;
+            case "周二":
+                return 2;
+            case "周三":
+                return 3;
+            case "周四":
+                return 4;
+            case "周五":
+                return 5;
+            case "周六":
+                return 6;
+            case "周日":
+                return 7;
+        }
+        return 0;
     }
 
 }

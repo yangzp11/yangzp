@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yzp.mybatis.mapper.OrderClothesMapper">
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.yzp.mybatis.entity.OrderClothes">
+        <id column="clothes_id" property="clothesId"/>
+        <result column="clothes_num" property="clothesNum"/>
+        <result column="clothes_status" property="clothesStatus"/>
+        <result column="clothes_name" property="clothesName"/>
+        <result column="order_id" property="orderId"/>
+    </resultMap>
+
+    <select id="getOrderClothesList" resultType="com.yzp.mybatis.dto.OrderClothesDTO">
+        SELECT
+        t2.*,t3.created_time AS rewash_time,t4.operate_status,t4.operate_time
+        FROM order_info AS t1
+        LEFT JOIN order_clothes AS t2 ON t1.order_id = t2.order_id
+        LEFT JOIN order_clothes_rewash AS t3
+        ON t3.rewash_id = (
+        SELECT rewash_id
+        FROM order_clothes_rewash
+        WHERE clothes_num = t2.clothes_num
+        ORDER BY created_time DESC LIMIT 1
+        )
+        LEFT JOIN order_clothes_operate AS t4
+        ON t4.operate_id = (
+        SELECT operate_id FROM order_clothes_operate
+        WHERE clothes_num = t2.clothes_num AND operate_status = 1 ORDER BY operate_time DESC
+        LIMIT 1
+        )
+        WHERE 1 = 1
+        <if test="null != operate">
+            AND t4.operate_status = #{operate}
+        </if>
+        <if test="null != clothesNumList and clothesNumList.size > 0">
+            AND t2.clothes_num IN
+            <foreach collection="clothesNumList" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+</mapper>

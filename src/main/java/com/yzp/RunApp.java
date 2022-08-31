@@ -24,8 +24,8 @@ public class RunApp {
 
     public static void main(String[] args) {
         SpringApplication.run(RunApp.class, args);
-//        if (log.isInfoEnabled()) {
-//            log.info(">>>>>>>>本次启动时间[{}]<<<<<<<<", Instant.now());
-//        }
+        if (log.isInfoEnabled()) {
+            log.info(">>>>>>>>本次启动时间[{}]<<<<<<<<", Instant.now());
+        }
     }
 }

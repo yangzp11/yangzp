@@ -1,9 +1,14 @@
 package com.yzp.mybatis.controller;
 
 
+import com.yzp.mybatis.service.processor.OrderProcessService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * <p>
@@ -14,8 +19,22 @@ import org.springframework.web.bind.annotation.RestController;
  * @since 2022-08-29
  */
 @RestController
-@RequestMapping("/order-clothes")
+@RequestMapping("/orderClothes")
+@RequiredArgsConstructor
 public class OrderClothesController {
 
+    private final OrderProcessService orderProcessService;
+
+    /**
+     * 后台导出售后信息
+     *
+     * @param operate
+     * @param response
+     * @throws Exception
+     */
+    @GetMapping("/export")
+        public void exportData(Integer operate, HttpServletResponse response) throws Exception {
+        orderProcessService.exportData(operate, null, response);
+    }
 }
 

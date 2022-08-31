@@ -51,7 +51,7 @@ public class OrderClothesDTO {
     /**
      * 操作
      */
-    private Integer operate;
+    private Integer operateStatus;
 
     /**
      * 最新操作时间

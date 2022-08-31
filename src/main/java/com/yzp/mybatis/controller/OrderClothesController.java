@@ -26,14 +26,14 @@ public class OrderClothesController {
     private final OrderProcessService orderProcessService;
 
     /**
-     * 后台导出售后信息
+     * 导出数据
      *
      * @param operate
      * @param response
      * @throws Exception
      */
     @GetMapping("/export")
-        public void exportData(Integer operate, HttpServletResponse response) throws Exception {
+    public void exportData(Integer operate, HttpServletResponse response) throws Exception {
         orderProcessService.exportData(operate, null, response);
     }
 }

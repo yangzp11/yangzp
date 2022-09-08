@@ -1,0 +1,16 @@
+server:
+  port: 9988
+spring:
+  application:
+    name: yangzp
+#  profiles:
+#    active: dev
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+      config:
+        server-addr: 127.0.0.1:8848
+        file-extension: yaml
+        group: DEFAULT_GROUP
+        namespace: ab14df3f-840a-46e6-a3d4-a0ae080a53ec

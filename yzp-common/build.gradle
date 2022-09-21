@@ -1,0 +1,42 @@
+dependencies {
+    runtime 'mysql:mysql-connector-java:8.0.22'
+
+    implementation 'commons-lang:commons-lang:2.6'
+    implementation 'com.alibaba:fastjson:1.2.72'
+
+    // 排除掉低版本的springboot starter
+    implementation 'org.springframework.boot:spring-boot-starter-web:2.3.5.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.3.5.RELEASE'
+
+    compile 'javax.validation:validation-api:2.0.1.Final'
+    compile('com.baomidou:mybatis-plus-boot-starter:3.4.0') {
+        exclude(group: 'org.springframework.boot', module:'spring-boot-starter-jdbc')
+    }
+    compile('com.github.pagehelper:pagehelper-spring-boot-starter:1.3.0') {
+        exclude(group: 'org.springframework.boot', module:'spring-boot-starter-web')
+    }
+
+    compileOnly 'org.projectlombok:lombok:1.18.12'
+    annotationProcessor 'org.projectlombok:lombok:1.18.12'
+
+//    //implementation 'org.springframework.boot:spring-boot-starter-data-elasticsearch'
+//    //implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+//    implementation 'org.springframework.boot:spring-boot-starter-web'
+//    implementation 'mysql:mysql-connector-java'
+//    compileOnly 'org.projectlombok:lombok'
+//    //developmentOnly 'org.springframework.boot:spring-boot-devtools'
+//    annotationProcessor 'org.projectlombok:lombok'
+//    implementation 'org.springframework.boot:spring-boot-starter-test'
+//    implementation "cn.hutool:hutool-all:5.8.5"
+//    implementation 'org.redisson:redisson-spring-boot-starter:3.15.1'
+//    implementation 'org.springframework.boot:spring-boot-starter-redis:1.3.5.RELEASE'
+//    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+//    implementation 'com.baomidou:mybatis-plus-generator:3.4.1'
+//    implementation 'com.baomidou:mybatis-plus-extension:3.4.3'
+//    implementation 'com.baomidou:mybatis-plus-boot-starter:3.4.3'
+//    implementation 'org.apache.velocity:velocity-engine-core:2.1'
+//    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+//    implementation 'com.alibaba:easyexcel:3.1.1'
+//    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery:2.2.5.RELEASE'
+//    implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config:2.2.5.RELEASE'
+}

@@ -1,2 +1,5 @@
 rootProject.name = 'yangzp'
+include 'yzp-business'
+include 'yzp-common'
+include 'yzp-gateway'
 

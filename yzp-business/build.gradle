@@ -1,0 +1,21 @@
+plugins {
+    id 'java'
+}
+
+group 'com.yzp'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //引入工厂模块项目依赖
+    implementation project(':yzp-common')
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation 'com.alibaba:easyexcel:3.1.1'
+    implementation 'com.baomidou:mybatis-plus-generator:3.4.1'
+    implementation 'com.baomidou:mybatis-plus-extension:3.4.3'
+    implementation 'com.baomidou:mybatis-plus-boot-starter:3.4.3'
+    implementation 'org.redisson:redisson-spring-boot-starter:3.15.1'
+}

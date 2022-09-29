@@ -1,5 +1,7 @@
 package com.yzp.mybatis.service.processor;
 
+import com.yzp.mybatis.entity.OrderInfo;
+
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
@@ -24,4 +26,12 @@ public interface OrderProcessService {
      * @param response
      */
     void exportData(Integer operate, List<String> clothesNumList, HttpServletResponse response) throws Exception;
+
+    /**
+     * 测试spring事务
+     *
+     * @return
+     */
+    OrderInfo testTransactional();
+
 }

@@ -9,6 +9,7 @@ import cn.hutool.core.util.ObjectUtil;
 import com.alibaba.excel.EasyExcel;
 import com.alibaba.excel.ExcelWriter;
 import com.alibaba.excel.write.metadata.WriteSheet;
+import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.yzp.mybatis.dto.OrderClothesDTO;
 import com.yzp.mybatis.entity.OrderInfo;
 import com.yzp.mybatis.entity.OrderClothes;
@@ -25,8 +26,13 @@ import com.yzp.utils.excel.MonthSheetWriteHandler;
 import com.yzp.utils.excel.pojo.OrderClothesExcel;
 import com.yzp.utils.number.NumberUtils;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.support.TransactionSynchronizationAdapter;
+import org.springframework.transaction.support.TransactionSynchronizationManager;
+import org.springframework.transaction.support.TransactionSynchronizationUtils;
 
 import javax.servlet.http.HttpServletResponse;
 import java.math.BigDecimal;
@@ -45,6 +51,7 @@ import java.util.stream.Collectors;
  */
 @Component
 @RequiredArgsConstructor
+@Slf4j
 public class OrderProcessServiceImpl implements OrderProcessService {
 
     private final IOrderInforService orderService;
@@ -125,5 +132,63 @@ public class OrderProcessServiceImpl implements OrderProcessService {
                 excelWriter.finish();
             }
         }
+    }
+
+    @SneakyThrows
+    @Override
+    @Transactional(rollbackFor = Exception.class)
+    public OrderInfo testTransactional() {
+        String orderId = IdUtil.getSnowflakeNextIdStr();
+
+        OrderInfo order = new OrderInfo();
+        order.setOrderId(orderId);
+        order.setOrderNumber(NumberUtils.getThirteenNumber());
+        order.setOrderAmount(new BigDecimal("99"));
+        new Thread(() -> orderService.save(order)).start();
+
+
+        OrderClothes orderClothes = new OrderClothes();
+        orderClothes.setOrderId(orderId);
+        orderClothes.setClothesId(1 + 2);
+        orderClothes.setClothesName("衣物" + 2);
+        orderClothes.setClothesNum("1232132");
+        orderClothes.setClothesStatus(2);
+        orderClothesService.save(orderClothes);
+        throw new Exception("aa");
+//        List<OrderClothes> addOrderClothesList = new ArrayList<>();
+//        List<String> clothesNumList = clothesNumGenerate.getOutClothesNumberListNew(20, 1);
+//        AtomicInteger atomicInteger = new AtomicInteger(0);
+//        for (int j = 0; j < 20; j++) {
+//            String clothesNum = clothesNumList.get(atomicInteger.get());
+//            atomicInteger.getAndIncrement();
+//            OrderClothes orderClothes = new OrderClothes();
+//            orderClothes.setOrderId(orderId);
+//            orderClothes.setClothesId(1 + j);
+//            orderClothes.setClothesName("衣物" +j);
+//            orderClothes.setClothesNum(clothesNum);
+//            orderClothes.setClothesStatus(j);
+//            addOrderClothesList.add(orderClothes);
+//        }
+//        orderClothesService.saveBatch(addOrderClothesList);
+//        int count = orderService.count(Wrappers.<OrderInfo>lambdaQuery().eq(OrderInfo::getOrderAmount, 99));
+//        log.info("查询前count：{}", count);
+
+//        int count2 = orderService.count(Wrappers.<OrderInfo>lambdaQuery().eq(OrderInfo::getOrderAmount, 99));
+//        log.info("查询后count：{}", count2);
+//        Thread.sleep(10000);
+//        //OrderInfo res = orderService.getById(orderId);
+//        TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronizationAdapter() {
+//            @Override
+//            public void afterCommit() {
+//                OrderInfo res = orderService.getById(orderId);
+//                log.info("事务提交后数据：{}", res);
+//            }
+//
+//            @Override
+//            public void beforeCommit(boolean readOnly) {
+//                OrderInfo res = orderService.getById(orderId);
+//                log.info("事务提交前数据：{}", res);
+//            }
+//        });
     }
 }

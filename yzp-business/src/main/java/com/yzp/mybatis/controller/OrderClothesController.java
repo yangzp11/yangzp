@@ -3,6 +3,7 @@ package com.yzp.mybatis.controller;
 
 import com.yzp.mybatis.dto.OrderClothesDTO;
 import com.yzp.mybatis.entity.OrderClothes;
+import com.yzp.mybatis.entity.OrderInfo;
 import com.yzp.mybatis.service.IOrderClothesService;
 import com.yzp.mybatis.service.processor.OrderProcessService;
 import lombok.RequiredArgsConstructor;
@@ -50,6 +51,14 @@ public class OrderClothesController {
     public List<OrderClothesDTO> exportData() {
         return orderClothesService.getOrderClothesList(1,
                 Arrays.asList("10010241", "10010242", "10010245", "10010248", "10010253", "10010254", "10010257"));
+    }
+
+    /**
+     * 测试spring事务
+     */
+    @GetMapping("/test/tran")
+    public OrderInfo testTransactional() {
+        return orderProcessService.testTransactional();
     }
 }
 

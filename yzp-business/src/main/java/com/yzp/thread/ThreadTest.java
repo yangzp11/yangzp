@@ -4,7 +4,11 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.TimeInterval;
 import cn.hutool.core.lang.Snowflake;
 import cn.hutool.core.util.IdUtil;
+import cn.hutool.cron.task.RunnableTask;
+import com.alibaba.ttl.TransmittableThreadLocal;
+import com.alibaba.ttl.TtlRunnable;
 import com.yzp.utils.lambda.CollectorsUtil;
+import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
@@ -14,9 +18,7 @@ import javax.annotation.Resource;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -130,5 +132,32 @@ public class ThreadTest {
         List<String> list = Stream.of(thread1List, thread2List, thread3List).flatMap(Collection::stream).collect(Collectors.toList());
         List<String> list2 = list.stream().filter(CollectorsUtil.repeatByKey(item -> item)).collect(Collectors.toList());
         log.info("重复雪花ID：{}", list2);
+    }
+
+    @SneakyThrows
+    public static void main(String[] args) {
+        // ## 1. 框架上层逻辑，后续流程框架调用业务 ##
+        TransmittableThreadLocal<String> context = new TransmittableThreadLocal<>();
+        ThreadLocal<String> threadLocal = new ThreadLocal<>();
+        InheritableThreadLocal<String> inheritableThreadLocal = new InheritableThreadLocal<>();
+        context.set("111111");
+        threadLocal.set("111111");
+        inheritableThreadLocal.set("111111");
+//        new Thread(() ->{
+//            System.out.println(context.get());
+//            System.out.println(threadLocal.get());  //null
+//            System.out.println(inheritableThreadLocal.get());
+//        }).start();
+
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
+        CountDownLatch countDownLatch = new CountDownLatch(1);
+
+        executorService.submit(() ->{
+            System.out.println(context.get());
+            System.out.println(threadLocal.get());
+            System.out.println(inheritableThreadLocal.get());
+            countDownLatch.countDown();
+        }).get();
+        countDownLatch.await();
     }
 }

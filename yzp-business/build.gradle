@@ -33,5 +33,5 @@ dependencies {
     implementation 'com.github.binarywang:weixin-java-open:4.4.0'
     implementation 'com.github.binarywang:weixin-java-mp:4.4.0'
     implementation 'com.github.binarywang:weixin-java-cp:4.4.0'
-
+    implementation 'com.alibaba:transmittable-thread-local:2.14.0'
 }

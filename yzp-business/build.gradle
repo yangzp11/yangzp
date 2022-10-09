@@ -34,4 +34,6 @@ dependencies {
     implementation 'com.github.binarywang:weixin-java-mp:4.4.0'
     implementation 'com.github.binarywang:weixin-java-cp:4.4.0'
     implementation 'com.alibaba:transmittable-thread-local:2.14.0'
+    implementation 'io.github.memorydoc:gobrs-async-starter:1.2.1-RELEASE'
+    implementation 'org.apache.metamodel:MetaModel-full:5.3.3'
 }

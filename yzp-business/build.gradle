@@ -17,6 +17,7 @@ dependencies {
     implementation 'com.baomidou:mybatis-plus-generator:3.4.1'
     implementation 'com.baomidou:mybatis-plus-extension:3.4.3'
     implementation 'com.baomidou:mybatis-plus-boot-starter:3.4.3'
+    implementation 'org.apache.velocity:velocity-engine-core:2.1'
     implementation 'org.redisson:redisson-spring-boot-starter:3.15.1'
     implementation 'mysql:mysql-connector-java'
     implementation 'cn.hutool:hutool-all:5.8.5'
@@ -25,7 +26,6 @@ dependencies {
     implementation 'com.baomidou:mybatis-plus-generator:3.4.1'
     implementation 'com.baomidou:mybatis-plus-extension:3.4.3'
     implementation 'com.baomidou:mybatis-plus-boot-starter:3.4.3'
-    implementation 'org.apache.velocity:velocity-engine-core:2.1'
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation 'com.alibaba:easyexcel:3.1.1'
     implementation 'com.github.binarywang:weixin-java-miniapp:4.4.0'
@@ -36,4 +36,4 @@ dependencies {
     implementation 'com.alibaba:transmittable-thread-local:2.14.0'
     implementation 'io.github.memorydoc:gobrs-async-starter:1.2.1-RELEASE'
     implementation 'org.apache.metamodel:MetaModel-full:5.3.3'
-}
+    implementation 'com.github.qiujiayu:autoload-cache-spring-boot-starter:7.1.3'}

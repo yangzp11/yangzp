@@ -1,0 +1,26 @@
+plugins {
+    id 'java'
+}
+
+group 'com.yzp'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+    implementation 'org.apache.rocketmq:rocketmq-spring-boot-starter:2.2.1'
+    implementation 'com.baomidou:mybatis-plus-generator:3.4.1'
+    implementation 'com.baomidou:mybatis-plus-extension:3.4.3'
+    implementation 'org.apache.velocity:velocity-engine-core:2.1'
+    implementation 'com.baomidou:mybatis-plus-boot-starter:3.4.3'
+    implementation 'mysql:mysql-connector-java'
+    implementation 'cn.hutool:hutool-all:5.8.5'
+}
+
+test {
+    useJUnitPlatform()
+}

@@ -3,4 +3,5 @@ include 'yzp-business'
 include 'yzp-common'
 include 'yzp-gateway'
 include 'yzp-auth'
+include 'yzp-rocketmq'
 

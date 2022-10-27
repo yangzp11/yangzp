@@ -41,6 +41,12 @@ public class TransactionListenerImpl implements RocketMQLocalTransactionListener
             String body = new String((byte[]) msg.getPayload(), StandardCharsets.UTF_8);
             UserEventDTO userEventDTO = JSONObject.parseObject(body, UserEventDTO.class);
             testUserService.updateTestUser(userEventDTO);
+            //保存消息
+            TestMsg testMsg = new TestMsg();
+            testMsg.setMsgId(userEventDTO.getMsgId());
+            testMsg.setMsgContent("msg content");
+            testMsgService.saveTestMsg(testMsg);
+
             return RocketMQLocalTransactionState.COMMIT;
         } catch (Exception ex) {
             log.info("出现异常：{}，进行回滚", ex.getMessage());

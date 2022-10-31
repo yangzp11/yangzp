@@ -1,13 +1,11 @@
 package com.yzp.consumer;
 
 import cn.hutool.core.date.DateUtil;
-import cn.hutool.json.JSONUtil;
 import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.annotation.RocketMQMessageListener;
 import org.apache.rocketmq.spring.core.RocketMQListener;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
@@ -23,6 +21,7 @@ import java.util.Map;
 public class RocketMQDelayConsumerListener implements RocketMQListener<String> {
 
     @Override
+    @SuppressWarnings("unchecked")
     public void onMessage(String message) {
         Map<String, Object> orderMap = JSONObject.parseObject(message, Map.class);
         String orderNumber = String.valueOf(orderMap.get("orderNumber"));

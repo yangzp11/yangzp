@@ -9,12 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
-/**
- * 消费延迟消息
- *
- * @author YangZhiPeng
- * @date 2022/10/27 9:51
- */
 @Component
 @RocketMQMessageListener(topic = "test-topic-delay", consumerGroup = "test-delay", maxReconsumeTimes = 1)
 @Slf4j

@@ -4,7 +4,6 @@ import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.util.IdUtil;
 import com.alibaba.fastjson.JSONObject;
 import com.yzp.mybatis.dto.UserEventDTO;
-import com.yzp.mybatis.entity.TestMsg;
 import com.yzp.mybatis.service.ITestMsgService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.LocalTransactionState;
@@ -19,7 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * desc
@@ -45,25 +45,25 @@ public class TestProducer {
         rocketMQTemplate.convertAndSend("first-topic", "你好,Java旅途");
     }
 
-    /**
-     * 发送延时消息
-     */
-    @GetMapping("/testDelaySend/{delayLevel}")
-    public void testDelaySend(@PathVariable("delayLevel") Integer delayLevel) {
+        /**
+         * 发送延时消息
+         */
+        @GetMapping("/testDelaySend/{delayLevel}")
+        public void testDelaySend(@PathVariable("delayLevel") Integer delayLevel) {
 
-        Map<String, Object> orderMap = new HashMap<>();
-        orderMap.put("orderNumber", "1357890");
-        orderMap.put("createTime", DateUtil.now());
+            Map<String, Object> orderMap = new HashMap<>();
+            orderMap.put("orderNumber", "1357890");
+            orderMap.put("createTime", DateUtil.now());
 
-        //参数一：topic   如果想添加tag,可以使用"topic:tag"的写法
-        //参数二：Message<?>
-        //参数三：消息发送超时时间
-        //参数四：delayLevel 延时level  messageDelayLevel=1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h
-        //参数四 可在broker.conf中修改messageDelayLevel，然后启动时-c指定config启动
-        rocketMQTemplate.syncSend("test-topic-delay", MessageBuilder.withPayload(JSONObject.toJSONString(orderMap)).build(),
-                3000, delayLevel);
-        log.info("延迟消息发送：{}", JSONObject.toJSONString(orderMap));
-    }
+            //参数一：topic   如果想添加tag,可以使用"topic:tag"的写法
+            //参数二：Message<?>
+            //参数三：消息发送超时时间
+            //参数四：delayLevel 延时level  messageDelayLevel=1s 5s 10s 30s 1m 2m 3m 4m 5m 6m 7m 8m 9m 10m 20m 30m 1h 2h
+            //参数四 可在broker.conf中修改messageDelayLevel，然后启动时-c指定config启动
+            rocketMQTemplate.syncSend("test-topic-delay", MessageBuilder.withPayload(JSONObject.toJSONString(orderMap)).build(),
+                    3000, delayLevel);
+            log.info("延迟消息发送：{}", JSONObject.toJSONString(orderMap));
+        }
 
     /**
      * 发送事务消息

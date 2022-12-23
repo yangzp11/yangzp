@@ -24,6 +24,6 @@ public class WeChatController {
         } catch (WxErrorException e) {
             e.printStackTrace();
         }
-        return "aa";
+        return "aaa";
     }
 }

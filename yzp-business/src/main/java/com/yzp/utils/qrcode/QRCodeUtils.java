@@ -30,7 +30,7 @@ public class QRCodeUtils {
      * @param useLog 使用图标
      */
     public static void encodeQRCode(Boolean useLog) throws IOException, WriterException {
-        String contents = "李楠兮憨批";
+        String contents = "内容";
         // 二维码内容 //https://www.baidu.com
         int width = 430; // 二维码图片宽度 300
         int height = 430; // 二维码图片高度300

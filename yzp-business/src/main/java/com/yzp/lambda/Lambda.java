@@ -6,7 +6,10 @@ import com.yzp.utils.lambda.CollectorsUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
@@ -50,6 +53,8 @@ public class Lambda {
         //排序Comparator.nullsLast/nullFirst(Integer::compareTo)，可防止空指针，为空排到最后
         List<Test> sortedList = testList.stream().sorted(Comparator.comparing(Test::getTestStatus, Comparator.nullsLast(Integer::compareTo)).reversed()).collect(Collectors.toList());
         sortedList.forEach(System.out::println);
+        //出现重复key，取第一个值
+        Map<String, Integer> map = sortedList.stream().collect(Collectors.toMap(Test::getTestId, Test::getTestType, (old, year) -> old));
         //根据不同条件分组聚合
         Map<Integer, Test> testMap = sortedList.parallelStream().collect(
                 Collectors.groupingBy(x -> {
@@ -71,7 +76,7 @@ public class Lambda {
                             resVO.setTestMoney(money);
                             return resVO;
                         })));
-        if (log.isInfoEnabled()){
+        if (log.isInfoEnabled()) {
             log.info("testMap:{}", testMap);
         }
 

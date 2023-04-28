@@ -1,5 +1,7 @@
 package com.yzp.utils;
 
+import lombok.extern.slf4j.Slf4j;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
@@ -12,8 +14,9 @@ import java.util.Base64;
  * @author YangZhiPeng
  * @date 2023/4/28 11:06
  */
+@Slf4j
 public class AesUtil {
-    private static final String SECRET_KEY = "mysecretkey12345";
+    private static final String SECRET_KEY = "yzpsecretkey1234";
     private static final String INIT_VECTOR = "abcdefghijklmnop";
 
     public static String encrypt(String value) {
@@ -25,7 +28,7 @@ public class AesUtil {
             byte[] encrypted = cipher.doFinal(value.getBytes());
             return Base64.getEncoder().encodeToString(encrypted);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            log.error("加密AES：{}， 失败，{}", value, ex.getMessage());
         }
         return null;
     }
@@ -39,13 +42,13 @@ public class AesUtil {
             byte[] original = cipher.doFinal(Base64.getDecoder().decode(encrypted));
             return new String(original);
         } catch (Exception ex) {
-            ex.printStackTrace();
+            log.error("解密AES：{}， 失败，{}", encrypted, ex.getMessage());
         }
         return null;
     }
 
     public static void main(String[] args) {
-        String password = "123456";
+        String password = "108604";
         String encrypted = encrypt(password);
         System.out.println("Encrypted: " + encrypted);
         String decrypted = decrypt(encrypted);

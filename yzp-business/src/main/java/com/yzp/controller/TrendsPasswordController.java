@@ -29,7 +29,7 @@ public class TrendsPasswordController {
     /**
      * 生成新密码
      */
-    private TrendsPasswordResVO handleSavePass(TrendsPasswordResVO resVO, String redisKey) {
+    public TrendsPasswordResVO handleSavePass(TrendsPasswordResVO resVO, String redisKey) {
         // 随机6位密码
         String password = RandomUtil.randomNumbers(6);
         String decryptPassword = AesUtil.encrypt(password);

@@ -3,7 +3,13 @@ server:
 spring:
   application:
     name: yzp-business
-#  profiles:
+#    # 配置 DataSource Driver
+#    datasource:
+#     driver-class-name: org.apache.shardingsphere.driver.ShardingSphereDriver
+#    # 指定 YAML 配置文件
+#     url: jdbc:shardingsphere:classpath:bootstrap.yml
+
+  #  profiles:
 #    active: dev
   cloud:
     nacos:

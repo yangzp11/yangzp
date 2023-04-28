@@ -1,9 +1,9 @@
 package com.yzp.utils.number;
 
 import java.awt.*;
-import java.awt.event.InputEvent;
-import java.awt.event.KeyEvent;
 import java.math.BigInteger;
+import java.math.MathContext;
+import java.math.RoundingMode;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -59,7 +59,7 @@ public class NumberUtils {
     public static Integer twoToTen(String num) throws AWTException {
         return new BigInteger(num, 2).intValue();
     }
-    public static void main(String[] args) {
+/*    public static void main(String[] args) {
         System.out.println(11111);
         try {
             //实例化机器人
@@ -105,5 +105,10 @@ public class NumberUtils {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }*/
+
+    public static void main(String[] args) {
+        MathContext mathContext = new MathContext(3, RoundingMode.HALF_UP);
     }
+
 }

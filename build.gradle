@@ -16,7 +16,7 @@ allprojects {
         // 配置镜像代理
         maven {
             allowInsecureProtocol = true // 允许http访问
-            url 'https://maven.aliyun.com/nexus/content/groups/public/'
+            url 'https://maven.aliyun.com/repository/public'
         }
         mavenCentral()
     }

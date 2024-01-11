@@ -1,12 +1,13 @@
 SpringCouldAlibaba+nacos+gradle 简易项目
 主要就是工作中遇到一些功能，我把觉得有用的一些分享出来供大家参考，如有不足欢迎指出。
 
-项目结构
-|--yzp-auth(oauth2示例)
-|--yzp-common(通用基础工具包)
-|--yzp-business(业务系统服务)
-|--yzp-gateway(网关服务)
-|--yzp-rocketmq(消息服务)
+项目结构  
+
+yzp-auth(oauth2示例)  
+yzp-common(通用基础工具包，暂时没用只是为了做多项目管理)  
+yzp-business(业务系统服务，示例都在这里面)  
+yzp-gateway(网关服务，服务通过nacos全部注册到这)  
+yzp-rocketmq(消息服务)
 
 主要功能示例
 1. 动态密码

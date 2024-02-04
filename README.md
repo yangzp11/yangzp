@@ -10,12 +10,12 @@ yzp-gateway(网关服务，服务通过nacos全部注册到这)
 yzp-rocketmq(消息服务)
 
 主要功能示例
-1. 动态密码
-2. 微信公众号推送
+1. 动态密码(类似令牌，到期自动刷新)
 3. 设计模式示例(策略，建造)
 4. stream lambda表达式示例
-5. 自定义编号批量生成
-6. ThreadPoolTaskExecutor多线程示例
+5. 自定义编号批量生成(锁，自增)
+6. 多线程示例（ThreadTest）
 7. 地图位置转坐标
 8. Solution 一些简单算法示例，优惠金额算法
 9. 二维码生成、短链接生成
+10. 经典，复杂SQL示例(/yzp-business/sql)

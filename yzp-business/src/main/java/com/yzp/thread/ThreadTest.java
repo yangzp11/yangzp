@@ -219,4 +219,45 @@ public class ThreadTest {
         }
 
     }
+
+	private static final Semaphore semaphore = new Semaphore(1); // 设置并发许可数为1
+
+	public static void accessResource() {
+		try {
+			semaphore.acquire(); // 获取许可，如果许可不够则阻塞
+			System.out.println(Thread.currentThread().getName() + " accessed the resource");
+			// 模拟资源访问操作
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		} finally {
+			semaphore.release(); // 访问完毕后释放许可
+			System.out.println(Thread.currentThread().getName() + " released the resource");
+		}
+	}
+
+/*	private static final int PARTIES = 4;
+	private static final CyclicBarrier BARRIER = new CyclicBarrier(PARTIES, () -> System.out.println("All parties arrived!"));
+
+	public static  void doWork(int partyNumber) {
+		try {
+//                ThreadPoolExecutor
+
+			System.out.println( partyNumber + " working...");
+			// 模拟工作耗时
+			Thread.sleep((int) (Math.random() * 1000));
+			System.out.println( partyNumber + " ready to meet at the barrier.");
+			BARRIER.await(); // 等待其他线程到达屏障点
+			System.out.println( partyNumber + " passed the barrier and continuing work...");
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) {
+		for (int i = 1; i <= PARTIES; i++) {
+			int finalI = i;
+			new Thread(() -> doWork(finalI), "Party-" + i).start();
+		}
+	}*/
 }

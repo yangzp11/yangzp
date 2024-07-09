@@ -40,3 +40,4 @@ gradle/
 *.build
 build/
 .gradle/
+**/out

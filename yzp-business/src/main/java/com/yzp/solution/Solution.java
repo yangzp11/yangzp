@@ -1,7 +1,5 @@
-package com.yzp.utils.number;
+package com.yzp.solution;
 
-import cn.hutool.core.date.DateUtil;
-import cn.hutool.core.date.TimeInterval;
 import cn.hutool.core.util.StrUtil;
 
 import java.util.*;
@@ -461,9 +459,77 @@ public class Solution {
 		}
 	}
 
+//	public static void main(String[] args) {
+//		TimeInterval timeInterval = DateUtil.timer();
+//		System.out.println(myPow(23, -2));
+//		System.out.println("hs" + timeInterval.interval());
+//	}
+	//题目名称： 数组元素的唯一组合
+	//题目背景：
+	//假设你正在开发一个数据分析软件，需要处理大量数据集。为了提高数据处理的效率，你被分配了一个任务：给定一个包含整数的数组，你需要找出所有不重复的子集（组合），并且每个子集内的元素都是唯一的。
+	//任务：
+	//编写一个Java程序，该程序接收一个整数数组作为输入，并返回一个包含所有可能的不重复子集的列表。每个子集也是一个整数列表，且子集中没有重复的元素。
+	//示例：
+	//输入：[1, 2, 3, 4]
+	//输出：[[1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]]
+	// 4, 14,24,34,1234  124,134
+
+	public static List<List<Integer>> findUniqueCombinations(int[] arr) {
+		List<List<Integer>> result = new ArrayList<>();
+		for (int i = 0; i < arr.length; i++) {
+			int num = arr[i];
+			if (i == 0) {
+				List<Integer> initList = new ArrayList<>();
+				initList.add(num);
+				result.add(initList);
+			} else {
+				List<List<Integer>> temp = new ArrayList<>();
+				// 对于当前数字，将其添加到之前所有组合的末尾
+				for (int j = 0; j < result.size() + 1; j++) {
+					List<Integer> newSubset;
+					if (j == 0) {
+						newSubset = new ArrayList<>();
+					} else {
+						newSubset = new ArrayList<>(result.get(j - 1));
+					}
+					newSubset.add(num);
+					temp.add(newSubset);
+				}
+				// 更新结果集
+				result.addAll(temp);
+			}
+		}
+		return result;
+	}
+
 	public static void main(String[] args) {
-		TimeInterval timeInterval = DateUtil.timer();
-		System.out.println(myPow(23, -2));
-		System.out.println("hs" + timeInterval.interval());
+		int[] input = {1, 2, 3, 4, 5, 6, 7, 8};  // 2=> 3  3=>7  4=>15   5=>31 6 =>63, 7=>127
+		List<List<Integer>> combinations = findUniqueCombinations(input);
+		for (List<Integer> combination : combinations) {
+			System.out.println(combination);
+		}
+		// 计算 2^(n) - 1
+		int result = (1 << (input.length)) - 1;
+		System.out.println(result);
+		System.out.println(combinations.size());
+	}
+
+
+	public static List<List<Integer>> findUniqueCombinations2(int[] arr) {
+		List<List<Integer>> result = new ArrayList<>();
+		for (int num : arr) {
+			List<List<Integer>> temp = new ArrayList<>();
+			// 对于每个现有子集，创建一个新的子集，并添加当前元素
+			for (List<Integer> subset : result) {
+				List<Integer> newSubset = new ArrayList<>(subset);
+				newSubset.add(num);
+				temp.add(newSubset);
+			}
+			// 将当前元素作为单个元素的子集添加
+			temp.add(new ArrayList<>(List.of(num)));
+			// 将新创建的子集添加到结果集中
+			result.addAll(temp);
+		}
+		return result;
 	}
 }

@@ -1,8 +1,10 @@
 package com.yzp.solution;
 
 import cn.hutool.core.util.StrUtil;
+import com.alibaba.fastjson.JSON;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * // Regular Expression Matching
@@ -474,7 +476,7 @@ public class Solution {
 	//输出：[[1], [2], [3], [1, 2], [1, 3], [2, 3], [1, 2, 3]]
 	// 4, 14,24,34,1234  124,134
 
-	public static List<List<Integer>> findUniqueCombinations(int[] arr) {
+/*	public static List<List<Integer>> findUniqueCombinations(int[] arr) {
 		List<List<Integer>> result = new ArrayList<>();
 		for (int i = 0; i < arr.length; i++) {
 			int num = arr[i];
@@ -531,5 +533,75 @@ public class Solution {
 			result.addAll(temp);
 		}
 		return result;
+	}*/
+
+	//题目背景：
+	//在一个遥远的国度里，有一个古老的传说，讲述了一串神秘的数字序列。这串序列据说是由一位古代智者创造的，它隐藏着宇宙的秘密。
+	// 这个序列是这样的：0, 1, 1, 2, 3, 5, 8, 13, 21...
+	//任务：
+	//你的任务是找出这个序列的规律并计算出第20个数是多少。同时，你还需要写出一个函数，能够计算出任意位置的数字。
+//	public static int getMysteryNumber(int n) {
+//		int before = 0;
+//		int result = 1;
+//		for (int i = 0; i < n - 2; i++) {
+//			int oldResult = result + before;
+//			before = result;
+//			result = oldResult;
+//		}
+//		return n == 1 ? before : result;
+//	}
+//	public static void main(String[] args) {
+//		System.out.println(getMysteryNumber(1));
+//		System.out.println(getMysteryNumber(2));
+//		System.out.println(getMysteryNumber(3));
+//		System.out.println(getMysteryNumber(4));
+//		System.out.println(getMysteryNumber(5));
+//		System.out.println(getMysteryNumber(6));
+//		System.out.println(getMysteryNumber(7));
+//		System.out.println(getMysteryNumber(20));
+//	}
+	//字符反转
+	public static void main(String[] args) {
+		String aa = "jiuzhangsuanfa";
+		StringBuilder bb = new StringBuilder();
+		for (int i = aa.length(); i > 0; i--) {
+			bb.append(aa.charAt(i - 1));
+		}
+		System.out.println(bb);
+		int[] cc = {5, 4, 4, 0, 0, 1};
+		System.out.println(JSON.toJSON(a(cc)));
 	}
+
+	//数组计数
+	public static Map<Integer, List<Integer>> a(int[] nums) {
+		Map<Integer, List<Integer>> map = new LinkedHashMap<>(8);
+
+		Map<Integer, Integer> mapSize = new LinkedHashMap<>(8);
+
+		for (int num : nums) {
+			mapSize.put(num, mapSize.containsKey(num) ? mapSize.get(num) + 1 : 1);
+		}
+		mapSize.forEach((key, value) -> {
+			List<Integer> list;
+			if (map.containsKey(value)) {
+				list = map.get(value);
+				list.add(key);
+			} else {
+				list = new ArrayList<>();
+				list.add(key);
+			}
+			map.put(value, list);
+		});
+		return map.entrySet().stream()
+			.sorted(Map.Entry.<Integer, List<Integer>>comparingByKey().reversed())
+			.collect(Collectors.toMap(Map.Entry::getKey,
+				entry -> {
+					// 对每个 List<Integer> 进行排序
+					List<Integer> sortedValues = new ArrayList<>(entry.getValue());
+					Collections.sort(sortedValues);
+					return sortedValues;
+				},
+				(oldValue, newValue) -> oldValue, LinkedHashMap::new));
+	}
+
 }

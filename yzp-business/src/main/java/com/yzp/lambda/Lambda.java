@@ -56,7 +56,7 @@ public class Lambda {
         //出现重复key，取第一个值
         Map<String, Integer> map = sortedList.stream().collect(Collectors.toMap(Test::getTestId, Test::getTestType, (old, year) -> old));
         //根据不同条件分组聚合
-        Map<Integer, Test> testMap = sortedList.parallelStream().collect(
+        Map<Integer, Test> testMap = sortedList.stream().collect(
                 Collectors.groupingBy(x -> {
                             //类型判断，根据啥分组
                             if (x.getTestType().equals(1)) {

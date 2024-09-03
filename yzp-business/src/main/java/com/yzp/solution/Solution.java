@@ -1,10 +1,8 @@
 package com.yzp.solution;
 
 import cn.hutool.core.util.StrUtil;
-import com.alibaba.fastjson.JSON;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * // Regular Expression Matching
@@ -561,47 +559,85 @@ public class Solution {
 //		System.out.println(getMysteryNumber(20));
 //	}
 	//字符反转
-	public static void main(String[] args) {
-		String aa = "jiuzhangsuanfa";
-		StringBuilder bb = new StringBuilder();
-		for (int i = aa.length(); i > 0; i--) {
-			bb.append(aa.charAt(i - 1));
-		}
-		System.out.println(bb);
-		int[] cc = {5, 4, 4, 0, 0, 1};
-		System.out.println(JSON.toJSON(a(cc)));
-	}
+//	public static void main(String[] args) {
+//		String aa = "jiuzhangsuanfa";
+//		StringBuilder bb = new StringBuilder();
+//		for (int i = aa.length(); i > 0; i--) {
+//			bb.append(aa.charAt(i - 1));
+//		}
+//		System.out.println(bb);
+//		int[] cc = {5, 4, 4, 0, 0, 1};
+//		System.out.println(JSON.toJSON(a(cc)));
+//	}
+//
+//	//数组计数
+//	public static Map<Integer, List<Integer>> a(int[] nums) {
+//		Map<Integer, List<Integer>> map = new LinkedHashMap<>(8);
+//
+//		Map<Integer, Integer> mapSize = new LinkedHashMap<>(8);
+//
+//		for (int num : nums) {
+//			mapSize.put(num, mapSize.containsKey(num) ? mapSize.get(num) + 1 : 1);
+//		}
+//		mapSize.forEach((key, value) -> {
+//			List<Integer> list;
+//			if (map.containsKey(value)) {
+//				list = map.get(value);
+//				list.add(key);
+//			} else {
+//				list = new ArrayList<>();
+//				list.add(key);
+//			}
+//			map.put(value, list);
+//		});
+//		return map.entrySet().stream()
+//			.sorted(Map.Entry.<Integer, List<Integer>>comparingByKey().reversed())
+//			.collect(Collectors.toMap(Map.Entry::getKey,
+//				entry -> {
+//					// 对每个 List<Integer> 进行排序
+//					List<Integer> sortedValues = new ArrayList<>(entry.getValue());
+//					Collections.sort(sortedValues);
+//					return sortedValues;
+//				},
+//				(oldValue, newValue) -> oldValue, LinkedHashMap::new));
+//	}
 
-	//数组计数
-	public static Map<Integer, List<Integer>> a(int[] nums) {
-		Map<Integer, List<Integer>> map = new LinkedHashMap<>(8);
-
-		Map<Integer, Integer> mapSize = new LinkedHashMap<>(8);
-
-		for (int num : nums) {
-			mapSize.put(num, mapSize.containsKey(num) ? mapSize.get(num) + 1 : 1);
-		}
-		mapSize.forEach((key, value) -> {
-			List<Integer> list;
-			if (map.containsKey(value)) {
-				list = map.get(value);
-				list.add(key);
-			} else {
-				list = new ArrayList<>();
-				list.add(key);
+	//   第 i 个人的体重为 people[i]，每艘船可以承载的最大重量为 limit。 每艘船最多可同时载两人，
+	//   但条件是这些人的重量之和最多为 limit 。 返回载到每一个人所需的最小船数。(保证每个人都能被船载)。
+	//people[1,2] limit=3输出 1 解释（1,2）
+	//people[3,2,2,1] limit=3输出 3 解释（1,2），(2)，(3)
+	public static int numRescueBoats(List<Integer> peopleList, int limit) {
+		peopleList.sort(Integer::compareTo);
+		int count = 0;
+		int startIndex = 0;
+		int endIndex = peopleList.size() - 1;
+		while (startIndex <= endIndex) {
+			if (peopleList.get(endIndex) + peopleList.get(startIndex) <= limit){
+				startIndex++;
+			}else {
+				endIndex--;
+				count++;
 			}
-			map.put(value, list);
-		});
-		return map.entrySet().stream()
-			.sorted(Map.Entry.<Integer, List<Integer>>comparingByKey().reversed())
-			.collect(Collectors.toMap(Map.Entry::getKey,
-				entry -> {
-					// 对每个 List<Integer> 进行排序
-					List<Integer> sortedValues = new ArrayList<>(entry.getValue());
-					Collections.sort(sortedValues);
-					return sortedValues;
-				},
-				(oldValue, newValue) -> oldValue, LinkedHashMap::new));
+		}
+		return count;
 	}
+
+	//平均分配
+	public static void main(String[] args) {
+		List<Integer> peopleList = new ArrayList<>();
+		//17,22,19,1,26,23,20,25,12
+		peopleList.add(1);
+		peopleList.add(12);
+		peopleList.add(30);
+		peopleList.add(30);
+		peopleList.add(30);
+		peopleList.add(30);
+		peopleList.add(30);
+		peopleList.add(30);
+		peopleList.add(6);
+// 1 1
+		System.out.println(numRescueBoats(peopleList, 30));
+	}
+
 
 }

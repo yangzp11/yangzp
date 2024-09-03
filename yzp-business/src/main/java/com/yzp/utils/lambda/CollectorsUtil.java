@@ -144,7 +144,8 @@ public class CollectorsUtil {
      *                     #ROUND_HALF_EVEN
      *                     #ROUND_UNNECESSARY
      */
-    public static <T> Collector<T, ?, BigDecimal> averagingBigDecimal(ToBigDecimalFunction<? super T> mapper, int newScale, RoundingMode roundingMode) {
+    public static <T> Collector<T, ?, BigDecimal> averagingBigDecimal(ToBigDecimalFunction<? super T> mapper,
+																	  int newScale, RoundingMode roundingMode) {
         return new CollectorImpl<>(
                 () -> new BigDecimal[]{new BigDecimal(0), new BigDecimal(0)},
                 (a, t) -> {
@@ -159,14 +160,15 @@ public class CollectorsUtil {
     }
 
     public static <T> Predicate<T> distinctByKey(Function<? super T, ?> keyExtractor) {
-        Map<Object, Boolean> seen = new ConcurrentHashMap<>();
+        Map<Object, Boolean> seen = new ConcurrentHashMap<>(8);
         return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) == null;
     }
 
     public static <T> Predicate<T> repeatByKey(Function<? super T, ?> keyExtractor) {
-        Map<Object, Boolean> seen = new ConcurrentHashMap<>();
+        Map<Object, Boolean> seen = new ConcurrentHashMap<>(8);
         return t -> seen.putIfAbsent(keyExtractor.apply(t), Boolean.TRUE) != null;
     }
+
 }
 
 

@@ -18,7 +18,7 @@ public class SocketIoRun implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        log.info("启动成功：{}", args);
+      //  log.info("启动成功：{}", args);
         socketIOServer.start();
     }
 }

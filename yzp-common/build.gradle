@@ -1,22 +1,18 @@
-dependencies {
-    runtime 'mysql:mysql-connector-java:8.0.22'
 
+dependencies {
     implementation 'commons-lang:commons-lang:2.6'
     implementation group: 'com.alibaba.fastjson2', name: 'fastjson2', version: '2.0.50'
 
     // 排除掉低版本的springboot starter
-    implementation 'org.springframework.boot:spring-boot-starter-web:2.3.5.RELEASE'
-    implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.3.5.RELEASE'
+//    implementation 'org.springframework.boot:spring-boot-starter-web:2.3.5.RELEASE'
+//    implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.3.5.RELEASE'
 
-    compile 'javax.validation:validation-api:2.0.1.Final'
-    compile('com.baomidou:mybatis-plus-boot-starter:3.4.0') {
+    implementation 'javax.validation:validation-api:2.0.1.Final'
+    implementation('com.baomidou:mybatis-plus-boot-starter:3.4.3') {
         exclude(group: 'org.springframework.boot', module:'spring-boot-starter-jdbc')
     }
-    compile('com.github.pagehelper:pagehelper-spring-boot-starter:1.3.0') {
+    implementation('com.github.pagehelper:pagehelper-spring-boot-starter:1.3.0') {
         exclude(group: 'org.springframework.boot', module:'spring-boot-starter-web')
     }
-
-    compileOnly 'org.projectlombok:lombok:1.18.12'
-    annotationProcessor 'org.projectlombok:lombok:1.18.12'
 
 }

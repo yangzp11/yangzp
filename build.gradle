@@ -1,6 +1,6 @@
 plugins {
-    id 'org.springframework.boot' version '2.3.10.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.10.RELEASE'
+    id 'org.springframework.boot' version '3.2.4'
+    id 'io.spring.dependency-management' version '1.1.4'
     id 'java'
 }
 
@@ -12,17 +12,22 @@ configurations {
 allprojects {
 
     repositories {
-        mavenLocal()
+       // mavenCentral()
         // 配置镜像代理
         maven {
             allowInsecureProtocol = true // 允许http访问
             url 'https://maven.aliyun.com/repository/public'
         }
-        mavenCentral()
+        //maven { url 'https://maven.tuna.tsinghua.edu.cn/repository/maven-public' } // 清华大学
+        //    maven { url 'https://mirrors.huaweicloud.com/repository/maven/' } // 华为云
+        mavenLocal()
+        flatDir {
+            dirs "libs"
+        }
     }
     group = 'com.yzp'
     version = '0.0.1-SNAPSHOT'
-    sourceCompatibility = '11'
+    sourceCompatibility = '17'
     apply plugin: 'java'
 }
 subprojects {
@@ -35,32 +40,36 @@ subprojects {
         apply plugin: 'io.spring.dependency-management'
 
         ext {
-            springCloudVersion = "Hoxton.SR8"
-            springCloudAlibabaVersion = "2.2.1.RELEASE"
-            aliCloudVersion = "1.0.0"
-
+            springCloudVersion = "2023.0.1"
+            springCloudAlibabaVersion = "2023.0.1.0"
+            aliCloudVersion = "2023.0.1.0"
         }
 
         dependencies {
-            implementation 'org.springframework.boot:spring-boot-starter-web'
+            implementation 'org.projectlombok:lombok:1.18.30'
+            annotationProcessor'org.projectlombok:lombok:1.18.30'
+
+//            implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
             implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
             implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
             implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config'
-            implementation "cn.hutool:hutool-all:5.8.5"
-
-            compileOnly 'org.projectlombok:lombok'
-            developmentOnly 'org.springframework.boot:spring-boot-devtools'
-            annotationProcessor 'org.projectlombok:lombok'
+//            developmentOnly 'org.springframework.boot:spring-boot-devtools'
             testImplementation('org.springframework.boot:spring-boot-starter-test') {
                 exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
             }
+//            implementation 'org.springframework.cloud:spring-cloud-dependencies'
+//            implementation 'com.alibaba.cloud:spring-cloud-alibaba-dependencies'
+//            implementation 'com.alibaba.cloud:aliyun-spring-boot-dependencies:3.2.4'
+            implementation 'org.springframework.cloud:spring-cloud-starter-loadbalancer'
+            implementation 'cn.hutool:hutool-all:5.8.25'
+
         }
 
         dependencyManagement {
             imports {
                 mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
                 mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}"
-                mavenBom "com.alibaba.cloud:aliyun-spring-boot-dependencies:${aliCloudVersion}"
+//                mavenBom "com.alibaba.cloud:aliyun-spring-boot-dependencies:${aliCloudVersion}"
             }
         }
     }

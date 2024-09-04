@@ -5,11 +5,6 @@ plugins {
 group 'com.yzp'
 version '0.0.1-SNAPSHOT'
 
-repositories {
-    mavenCentral()
-}
-
-
 configurations {
     compile.exclude(module: 'spring-boot-starter-web')
     compile.exclude(module: 'spring-cloud-starter-openfeign')

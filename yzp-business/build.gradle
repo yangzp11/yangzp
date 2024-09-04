@@ -5,29 +5,27 @@ plugins {
 group 'com.yzp'
 version '0.0.1-SNAPSHOT'
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     //引入工厂模块项目依赖
     implementation project(':yzp-common')
-    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.3'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'mysql:mysql-connector-java:8.0.33'
     implementation 'com.alibaba:easyexcel:3.1.1'
-    implementation 'com.baomidou:mybatis-plus-generator:3.4.1'
-    implementation 'com.baomidou:mybatis-plus-extension:3.5.3.1'
-    implementation 'com.baomidou:mybatis-plus-boot-starter:3.4.3'
+//    implementation 'com.baomidou:mybatis-plus-generator:3.4.1'
+//    implementation 'com.baomidou:mybatis-plus-extension:3.4.3'
+    //临时解决factoryBeanObjectType bug
+    implementation('com.baomidou:mybatis-plus-boot-starter:3.5.6') {
+        exclude group: 'org.mybatis', module: 'mybatis-spring'
+    }
+    implementation 'org.mybatis:mybatis-spring:3.0.3'
+
     implementation 'org.apache.velocity:velocity-engine-core:2.3'
-    implementation 'org.redisson:redisson-spring-boot-starter:3.15.1'
-    implementation 'mysql:mysql-connector-java'
-    implementation 'cn.hutool:hutool-all:5.8.25'
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis:2.3.5.RELEASE'
-    implementation 'org.springframework.boot:spring-boot-starter-webflux'
-    implementation 'com.baomidou:mybatis-plus-generator:3.4.1'
-    implementation 'com.baomidou:mybatis-plus-extension:3.5.3.1'
-    implementation 'com.baomidou:mybatis-plus-boot-starter:3.4.3'
-    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
-    implementation 'com.alibaba:easyexcel:3.1.1'
+    implementation 'org.redisson:redisson-spring-boot-starter:3.34.1'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+//    implementation 'org.springframework.boot:spring-boot-starter-webflux:3.2.4'
+//    implementation 'com.baomidou:mybatis-plus-generator:3.4.1'
+//    implementation 'com.baomidou:mybatis-plus-extension:3.4.3'
+    implementation 'com.squareup.okhttp3:okhttp:5.0.0-alpha.3'
     implementation 'com.github.binarywang:weixin-java-miniapp:4.4.0'
     implementation 'com.github.binarywang:weixin-java-pay:4.4.0'
     implementation 'com.github.binarywang:weixin-java-open:4.4.0'

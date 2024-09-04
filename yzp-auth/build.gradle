@@ -5,18 +5,10 @@ plugins {
 group 'com.yzp'
 version '0.0.1-SNAPSHOT'
 
-repositories {
-    mavenCentral()
-}
-
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation 'org.springframework.security.oauth:spring-security-oauth2:2.3.4.RELEASE'
-    implementation 'org.springframework.boot:spring-boot-starter-data-redis:2.3.5.RELEASE'
-    implementation 'mysql:mysql-connector-java'
-    implementation 'cn.hutool:hutool-all:5.8.5'
-    implementation 'com.baomidou:mybatis-plus-boot-starter:3.4.3'
-    implementation 'com.alibaba:druid:1.1.12'
+    implementation 'org.springframework.security.oauth:spring-security-oauth2:2.5.2.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis:'
     implementation 'javax.xml.bind:jaxb-api:2.3.1'
     implementation 'javax.activation:activation:1.1'
     implementation 'org.glassfish.jaxb:jaxb-runtime:2.3.0-b170127.1453'

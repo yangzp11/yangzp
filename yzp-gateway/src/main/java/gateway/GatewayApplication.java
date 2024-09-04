@@ -17,13 +17,11 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 @SpringBootApplication
 @Slf4j
 public class GatewayApplication {
-
     public static void main(String[] args) {
-        TimeInterval timeInterval = DateUtil.timer();
+
+		TimeInterval timeInterval = DateUtil.timer();
         SpringApplication.run(GatewayApplication.class, args);
-        if (log.isInfoEnabled()) {
             log.info(">>>>>>>>GatewayApplication本次启动耗时[{}]毫秒<<<<<<<<", timeInterval.interval());
-        }
     }
 
 }

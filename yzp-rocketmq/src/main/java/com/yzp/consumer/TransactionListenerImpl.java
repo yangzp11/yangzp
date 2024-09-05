@@ -4,14 +4,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.yzp.mybatis.dto.UserEventDTO;
 import com.yzp.mybatis.entity.TestMsg;
-import com.yzp.mybatis.mapper.TestMsgMapper;
 import com.yzp.mybatis.service.ITestMsgService;
 import com.yzp.mybatis.service.ITestUserService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.spring.annotation.RocketMQTransactionListener;
 import org.apache.rocketmq.spring.core.RocketMQLocalTransactionListener;
 import org.apache.rocketmq.spring.core.RocketMQLocalTransactionState;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.stereotype.Component;
 
@@ -63,7 +61,7 @@ public class TransactionListenerImpl implements RocketMQLocalTransactionListener
         UserEventDTO userEventDTO = JSONObject.parseObject(body, UserEventDTO.class);
         //事务id
         String msgId = userEventDTO.getMsgId();
-        int isExistMsgId = testMsgService.count(Wrappers.<TestMsg>lambdaQuery().eq(TestMsg::getMsgId, msgId));
+        long isExistMsgId = testMsgService.count(Wrappers.<TestMsg>lambdaQuery().eq(TestMsg::getMsgId, msgId));
         log.info("回查事务，事务号: {} 结果: {}", msgId, isExistMsgId);
         if (isExistMsgId > 0) {
             state = RocketMQLocalTransactionState.COMMIT;

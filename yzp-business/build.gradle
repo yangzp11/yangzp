@@ -19,7 +19,7 @@ dependencies {
     }
     implementation 'org.mybatis:mybatis-spring:3.0.3'
 
-    implementation 'org.apache.velocity:velocity-engine-core:2.3'
+//    implementation 'org.apache.velocity:velocity-engine-core:2.3'
     implementation 'org.redisson:redisson-spring-boot-starter:3.34.1'
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 //    implementation 'org.springframework.boot:spring-boot-starter-webflux:3.2.4'

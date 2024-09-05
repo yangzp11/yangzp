@@ -2,17 +2,13 @@ package com.yzp.mybatis.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
-import com.yzp.mybatis.dto.ShopEventDTO;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.yzp.mybatis.dto.UserEventDTO;
-import com.yzp.mybatis.entity.TestMsg;
 import com.yzp.mybatis.entity.TestMsgTwo;
 import com.yzp.mybatis.entity.TestShop;
-import com.yzp.mybatis.entity.TestUser;
 import com.yzp.mybatis.mapper.TestShopMapper;
-import com.yzp.mybatis.service.ITestMsgService;
 import com.yzp.mybatis.service.ITestMsgTwoService;
 import com.yzp.mybatis.service.ITestShopService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +34,7 @@ public class TestShopServiceImpl extends ServiceImpl<TestShopMapper, TestShop> i
     public Boolean updateShop(UserEventDTO shopEventDTO) {
         log.info("开始更新本地事务，消息ID：{}", shopEventDTO.getMsgId());
         //幂等校验
-        int isExistMegId = testMsgTwoService.count(Wrappers.<TestMsgTwo>lambdaQuery().eq(TestMsgTwo::getMsgId, shopEventDTO.getMsgId()));
+        long isExistMegId = testMsgTwoService.count(Wrappers.<TestMsgTwo>lambdaQuery().eq(TestMsgTwo::getMsgId, shopEventDTO.getMsgId()));
         if (isExistMegId <= 0) {
             UpdateWrapper<TestShop> updateWrapper = new UpdateWrapper<>();
             updateWrapper.eq("shop_id", shopEventDTO.getShopId());

@@ -6,9 +6,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * desc
@@ -17,7 +14,6 @@ import org.springframework.scheduling.annotation.EnableScheduling;
  * @date 2022/10/26 17:43
  */
 @SpringBootApplication
-@Configuration
 @Slf4j
 @EnableDiscoveryClient
 public class RocketMqApplication {

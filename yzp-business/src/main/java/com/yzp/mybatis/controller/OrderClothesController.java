@@ -1,15 +1,13 @@
 package com.yzp.mybatis.controller;
 
 
+import com.yzp.entity.OrderInfo;
 import com.yzp.mybatis.dto.OrderClothesDTO;
-import com.yzp.mybatis.entity.OrderClothes;
-import com.yzp.mybatis.entity.OrderInfo;
 import com.yzp.mybatis.service.IOrderClothesService;
 import com.yzp.mybatis.service.processor.OrderProcessService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;

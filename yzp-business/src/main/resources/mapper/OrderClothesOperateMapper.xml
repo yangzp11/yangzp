@@ -3,7 +3,7 @@
 <mapper namespace="com.yzp.mybatis.mapper.OrderClothesOperateMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.yzp.mybatis.entity.OrderClothesOperate">
+    <resultMap id="BaseResultMap" type="com.yzp.entity.OrderClothesOperate">
         <id column="operate_id" property="operateId" />
         <result column="clothes_num" property="clothesNum" />
         <result column="operate_status" property="operateStatus" />

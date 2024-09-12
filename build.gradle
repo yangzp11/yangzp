@@ -12,7 +12,7 @@ configurations {
 allprojects {
 
     repositories {
-       // mavenCentral()
+        // mavenCentral()
         // 配置镜像代理
         maven {
             allowInsecureProtocol = true // 允许http访问
@@ -38,19 +38,16 @@ subprojects {
         apply plugin: 'org.springframework.boot'
         // spring依赖管理
         apply plugin: 'io.spring.dependency-management'
-
         ext {
             springCloudVersion = "2023.0.1"
             springCloudAlibabaVersion = "2023.0.1.0"
-            aliCloudVersion = "2023.0.1.0"
         }
-
         dependencies {
-            implementation 'org.projectlombok:lombok:1.18.30'
-            annotationProcessor'org.projectlombok:lombok:1.18.30'
+            compileOnly 'org.projectlombok:lombok:1.18.30'
+            annotationProcessor 'org.projectlombok:lombok:1.18.30'
 
 //            implementation 'org.springframework.cloud:spring-cloud-starter-bootstrap'
-            implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+//            implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
             implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-discovery'
             implementation 'com.alibaba.cloud:spring-cloud-starter-alibaba-nacos-config'
 //            developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -71,6 +68,11 @@ subprojects {
                 mavenBom "com.alibaba.cloud:spring-cloud-alibaba-dependencies:${springCloudAlibabaVersion}"
 //                mavenBom "com.alibaba.cloud:aliyun-spring-boot-dependencies:${aliCloudVersion}"
             }
+        }
+    } else {
+        dependencies {
+            compileOnly 'org.projectlombok:lombok:1.18.30'
+            annotationProcessor 'org.projectlombok:lombok:1.18.30'
         }
     }
 

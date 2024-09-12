@@ -1,4 +1,4 @@
-package com.yzp.mybatis.entity;
+package com.yzp.entity;
 
 import java.io.Serializable;
 

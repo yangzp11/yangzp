@@ -1,7 +1,7 @@
 package com.yzp.mybatis.mapper;
 
-import com.yzp.mybatis.entity.OrderInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.yzp.entity.OrderInfo;
 
 /**
  * <p>

@@ -1,10 +1,5 @@
 server:
   port: 9988
-management:
-  health:
-    #    defaults:
-    elasticsearch:
-      enabled: false
 spring:
   application:
     name: yzp-business

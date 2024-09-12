@@ -1,7 +1,6 @@
 package com.yzp;
 
 import com.yzp.mybatis.dto.OrderClothesDTO;
-import com.yzp.mybatis.entity.OrderClothes;
 import com.yzp.mybatis.service.IOrderClothesService;
 import com.yzp.mybatis.service.processor.OrderProcessService;
 import org.junit.jupiter.api.Test;
@@ -9,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 /**

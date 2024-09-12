@@ -1,9 +1,8 @@
 package com.yzp.mybatis.service;
 
-import com.yzp.mybatis.dto.OrderClothesDTO;
-import com.yzp.mybatis.entity.OrderClothes;
 import com.baomidou.mybatisplus.extension.service.IService;
-import org.apache.ibatis.annotations.Param;
+import com.yzp.entity.OrderClothes;
+import com.yzp.mybatis.dto.OrderClothesDTO;
 
 import java.util.List;
 

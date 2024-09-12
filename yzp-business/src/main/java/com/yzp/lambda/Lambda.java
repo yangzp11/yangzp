@@ -1,7 +1,7 @@
 package com.yzp.lambda;
 
 import cn.hutool.core.util.ObjectUtil;
-import com.yzp.mybatis.entity.Test;
+import com.yzp.entity.Test;
 import com.yzp.utils.lambda.CollectorsUtil;
 import lombok.extern.slf4j.Slf4j;
 

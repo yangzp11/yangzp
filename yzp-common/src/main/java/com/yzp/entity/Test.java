@@ -1,10 +1,9 @@
-package com.yzp.mybatis.entity;
+package com.yzp.entity;
 
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 
 /**
  * desc

@@ -1,9 +1,9 @@
 package com.yzp.mybatis.service.impl;
 
-import com.yzp.mybatis.entity.OrderClothesRewash;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yzp.entity.OrderClothesRewash;
 import com.yzp.mybatis.mapper.OrderClothesRewashMapper;
 import com.yzp.mybatis.service.IOrderClothesRewashService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

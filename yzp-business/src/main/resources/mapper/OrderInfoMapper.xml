@@ -3,7 +3,7 @@
 <mapper namespace="com.yzp.mybatis.mapper.OrderMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.yzp.mybatis.entity.OrderInfo">
+    <resultMap id="BaseResultMap" type="com.yzp.entity.OrderInfo">
         <id column="order_id" property="orderId" />
         <result column="order_number" property="orderNumber" />
         <result column="order_amount" property="orderAmount" />

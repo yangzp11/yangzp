@@ -3,6 +3,7 @@ package com.yzp;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.date.TimeInterval;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.dubbo.config.spring.context.annotation.EnableDubbo;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
@@ -18,6 +19,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @EnableAsync
 @Slf4j
 @EnableDiscoveryClient
+@EnableDubbo
 public class BusinessApplicationApp {
 
 	public static void main(String[] args) {

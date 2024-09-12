@@ -1,5 +1,6 @@
-package com.yzp.mybatis.entity;
+package com.yzp.entity;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.io.Serializable;
 
@@ -10,7 +11,7 @@ import lombok.EqualsAndHashCode;
 
 /**
  * <p>
- * 订单衣物反洗表
+ * 订单表
  * </p>
  *
  * @author YangZhiPeng
@@ -18,16 +19,16 @@ import lombok.EqualsAndHashCode;
  */
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class OrderClothesRewash implements Serializable {
+public class OrderInfo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(type = IdType.ASSIGN_ID)
-    private String rewashId;
+    @TableId(type = IdType.INPUT)
+    private String orderId;
 
-    private String clothesNum;
+    private String orderNumber;
 
-    private String rewashReason;
+    private BigDecimal orderAmount;
 
     private LocalDateTime createdTime;
 

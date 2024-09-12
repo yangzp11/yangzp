@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yzp.mybatis.mapper.OrderClothesMapper">
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.yzp.mybatis.entity.OrderClothes">
+    <resultMap id="BaseResultMap" type="com.yzp.entity.OrderClothes">
         <id column="clothes_id" property="clothesId"/>
         <result column="clothes_num" property="clothesNum"/>
         <result column="clothes_status" property="clothesStatus"/>

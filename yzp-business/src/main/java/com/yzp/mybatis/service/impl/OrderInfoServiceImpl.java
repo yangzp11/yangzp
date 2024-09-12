@@ -1,9 +1,9 @@
 package com.yzp.mybatis.service.impl;
 
-import com.yzp.mybatis.entity.OrderInfo;
-import com.yzp.mybatis.mapper.OrderMapper;
-import com.yzp.mybatis.service.IOrderInforService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.yzp.entity.OrderInfo;
+import com.yzp.mybatis.mapper.OrderMapper;
+import com.yzp.mybatis.service.IOrderInfoService;
 import org.springframework.stereotype.Service;
 
 /**
@@ -15,6 +15,6 @@ import org.springframework.stereotype.Service;
  * @since 2022-08-29
  */
 @Service
-public class OrderInfoServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implements IOrderInforService {
+public class OrderInfoServiceImpl extends ServiceImpl<OrderMapper, OrderInfo> implements IOrderInfoService {
 
 }

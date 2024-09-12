@@ -1,18 +1,16 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.yzp'
+version = '0.0.1-SNAPSHOT'
 
 dependencies {
-    implementation 'commons-lang:commons-lang:2.6'
-    implementation group: 'com.alibaba.fastjson2', name: 'fastjson2', version: '2.0.50'
-
-    // 排除掉低版本的springboot starter
-//    implementation 'org.springframework.boot:spring-boot-starter-web:2.3.5.RELEASE'
-//    implementation 'org.springframework.boot:spring-boot-starter-jdbc:2.3.5.RELEASE'
-
-    implementation 'javax.validation:validation-api:2.0.1.Final'
-    implementation('com.baomidou:mybatis-plus-boot-starter:3.4.3') {
-        exclude(group: 'org.springframework.boot', module:'spring-boot-starter-jdbc')
-    }
-    implementation('com.github.pagehelper:pagehelper-spring-boot-starter:1.3.0') {
-        exclude(group: 'org.springframework.boot', module:'spring-boot-starter-web')
+//    compileOnly 'commons-lang:commons-lang:2.6'
+//    compileOnly group: 'com.alibaba.fastjson2', name: 'fastjson2', version: '2.0.50'
+//临时解决factoryBeanObjectType bug
+    implementation('com.baomidou:mybatis-plus-boot-starter:3.5.6') {
+        exclude group: 'org.mybatis', module: 'mybatis-spring'
     }
 
 }

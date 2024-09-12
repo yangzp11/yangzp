@@ -1,4 +1,4 @@
-package com.yzp.mybatis.entity;
+package com.yzp.entity;
 
 import java.time.LocalDateTime;
 import java.io.Serializable;

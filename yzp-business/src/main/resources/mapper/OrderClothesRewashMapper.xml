@@ -3,7 +3,7 @@
 <mapper namespace="com.yzp.mybatis.mapper.OrderClothesRewashMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.yzp.mybatis.entity.OrderClothesRewash">
+    <resultMap id="BaseResultMap" type="com.yzp.entity.OrderClothesRewash">
         <id column="rewash_id" property="rewashId" />
         <result column="clothes_num" property="clothesNum" />
         <result column="rewash_reason" property="rewashReason" />

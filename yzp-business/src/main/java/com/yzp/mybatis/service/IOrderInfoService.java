@@ -1,7 +1,7 @@
 package com.yzp.mybatis.service;
 
-import com.yzp.mybatis.entity.OrderInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yzp.entity.OrderInfo;
 
 /**
  * <p>
@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @author YangZhiPeng
  * @since 2022-08-29
  */
-public interface IOrderInforService extends IService<OrderInfo> {
+public interface IOrderInfoService extends IService<OrderInfo> {
 
 }

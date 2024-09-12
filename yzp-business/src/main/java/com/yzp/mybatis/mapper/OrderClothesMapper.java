@@ -1,8 +1,8 @@
 package com.yzp.mybatis.mapper;
 
-import com.yzp.mybatis.dto.OrderClothesDTO;
-import com.yzp.mybatis.entity.OrderClothes;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.yzp.entity.OrderClothes;
+import com.yzp.mybatis.dto.OrderClothesDTO;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

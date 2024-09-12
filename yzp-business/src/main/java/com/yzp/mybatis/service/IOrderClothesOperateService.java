@@ -1,7 +1,7 @@
 package com.yzp.mybatis.service;
 
-import com.yzp.mybatis.entity.OrderClothesOperate;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.yzp.entity.OrderClothesOperate;
 
 /**
  * <p>

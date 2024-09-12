@@ -1,6 +1,7 @@
 package com.yzp.mybatis.service.processor;
 
-import com.yzp.mybatis.entity.OrderInfo;
+
+import com.yzp.entity.OrderInfo;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;

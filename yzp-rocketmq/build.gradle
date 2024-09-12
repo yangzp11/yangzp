@@ -8,18 +8,18 @@ version '0.0.1-SNAPSHOT'
 dependencies {
 //    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
 //    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-    implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation group: 'org.apache.rocketmq', name: 'rocketmq-spring-boot-starter', version: '2.3.0'
     //    implementation 'com.baomidou:mybatis-plus-generator:3.4.1'
 //    implementation 'com.baomidou:mybatis-plus-extension:3.4.3'
 //    implementation 'org.apache.velocity:velocity-engine-core:2.1'
+//    implementation project(':yzp-common')
+    implementation 'org.springframework.boot:spring-boot-starter-web'
     //临时解决factoryBeanObjectType bug
     implementation('com.baomidou:mybatis-plus-boot-starter:3.5.6') {
         exclude group: 'org.mybatis', module: 'mybatis-spring'
     }
     implementation 'org.mybatis:mybatis-spring:3.0.3'
-
-    implementation 'mysql:mysql-connector-java:8.0.33'
+    compileOnly 'mysql:mysql-connector-java:8.0.33'
 
 }
 
